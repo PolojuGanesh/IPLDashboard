@@ -1,4 +1,3 @@
-// Write your code here
 import {Link} from 'react-router-dom'
 import './index.css'
 

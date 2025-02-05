@@ -1,4 +1,3 @@
-// Write your code here
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
@@ -193,34 +192,3 @@ class TeamMatches extends Component {
 }
 
 export default TeamMatches
-
-// let won = 0
-// let lost = 0
-// let drawn = 0
-
-// const {teamMatchesData} = this.state
-// const {latestMatch, recentMatches} = teamMatchesData
-
-// if (latestMatch?.matchStatus === 'Won') {
-//   won += 1
-// } else if (latestMatch?.matchStatus === 'Lost') {
-//   lost += 1
-// } else if (latestMatch?.matchStatus === 'Drawn') {
-//   drawn += 1
-// }
-
-// recentMatches.forEach(each => {
-//   if (each.matchStatus === 'Won') {
-//     won += 1
-//   } else if (each.matchStatus === 'Lost') {
-//     lost += 1
-//   } else if (each.matchStatus === 'Drawn') {
-//     drawn += 1
-//   }
-// })
-
-// const pieData = [
-//   {name: 'Won', value: won},
-//   {name: 'Lost', value: lost},
-//   {name: 'Drawn', value: drawn},
-// ]
