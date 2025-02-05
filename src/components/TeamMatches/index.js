@@ -1,6 +1,8 @@
 // Write your code here
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
+import {PieChart, Pie, Legend, Cell, ResponsiveContainer} from 'recharts'
 
 import LatestMatch from '../LatestMatch'
 import MatchCard from '../MatchCard'
@@ -64,6 +66,66 @@ class TeamMatches extends Component {
     )
   }
 
+  renderPiechart = () => {
+    let won = 0
+    let lost = 0
+    let drawn = 0
+
+    const {teamMatchesData} = this.state
+    const {latestMatch, recentMatches} = teamMatchesData
+
+    if (latestMatch?.matchStatus === 'Won') {
+      won += 1
+    } else if (latestMatch?.matchStatus === 'Lost') {
+      lost += 1
+    } else if (latestMatch?.matchStatus === 'Drawn') {
+      drawn += 1
+    }
+
+    recentMatches.forEach(each => {
+      if (each.matchStatus === 'Won') {
+        won += 1
+      } else if (each.matchStatus === 'Lost') {
+        lost += 1
+      } else if (each.matchStatus === 'Drawn') {
+        drawn += 1
+      }
+    })
+
+    const pieData = [
+      {name: 'Won', value: won},
+      {name: 'Lost', value: lost},
+      {name: 'Drawn', value: drawn},
+    ]
+
+    return (
+      <ResponsiveContainer width="100%" height={400}>
+        <PieChart>
+          <Pie
+            cx="50%"
+            cy="50%"
+            data={pieData}
+            startAngle={0}
+            endAngle={360}
+            innerRadius="40%"
+            outerRadius="70%"
+            dataKey="value"
+          >
+            <Cell name="Won" fill="#fecba6" />
+            <Cell name="Lost" fill="#b3d23f" />
+            <Cell name="Drawn" fill="#a44c9e" />
+          </Pie>
+          <Legend
+            iconType="circle"
+            layout="vertical"
+            verticalAlign="middle"
+            align="right"
+          />
+        </PieChart>
+      </ResponsiveContainer>
+    )
+  }
+
   renderTeamMatches = () => {
     const {teamMatchesData} = this.state
     const {teamBannerURL, latestMatch} = teamMatchesData
@@ -72,7 +134,15 @@ class TeamMatches extends Component {
       <div className="responsive-container">
         <img src={teamBannerURL} alt="team banner" className="team-banner" />
         <LatestMatch latestMatchData={latestMatch} />
+        {this.renderPiechart()}
         {this.renderRecentMatchesList()}
+        <div className="back-button-container">
+          <Link className="link-for-back" to="/">
+            <button className="back-button" type="button">
+              Back
+            </button>
+          </Link>
+        </div>
       </div>
     )
   }
@@ -123,3 +193,34 @@ class TeamMatches extends Component {
 }
 
 export default TeamMatches
+
+// let won = 0
+// let lost = 0
+// let drawn = 0
+
+// const {teamMatchesData} = this.state
+// const {latestMatch, recentMatches} = teamMatchesData
+
+// if (latestMatch?.matchStatus === 'Won') {
+//   won += 1
+// } else if (latestMatch?.matchStatus === 'Lost') {
+//   lost += 1
+// } else if (latestMatch?.matchStatus === 'Drawn') {
+//   drawn += 1
+// }
+
+// recentMatches.forEach(each => {
+//   if (each.matchStatus === 'Won') {
+//     won += 1
+//   } else if (each.matchStatus === 'Lost') {
+//     lost += 1
+//   } else if (each.matchStatus === 'Drawn') {
+//     drawn += 1
+//   }
+// })
+
+// const pieData = [
+//   {name: 'Won', value: won},
+//   {name: 'Lost', value: lost},
+//   {name: 'Drawn', value: drawn},
+// ]

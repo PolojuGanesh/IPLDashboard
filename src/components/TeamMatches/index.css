@@ -67,3 +67,42 @@
     margin-top: 32px;
   }
 }
+
+.back-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.back-button {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-family: 'Roboto';
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-radius: 7px;
+  cursor: pointer;
+  height: 40px;
+  width: 80px;
+}
+
+@media screen and (max-width: 575px) {
+  .back-button {
+    height: 30px;
+    width: 55px;
+  }
+}
+
+.back-button:hover {
+  background-image: linear-gradient(#ffffff, #f2addf);
+  color: black;
+}
+
+.link-for-back {
+  text-decoration: none;
+}
